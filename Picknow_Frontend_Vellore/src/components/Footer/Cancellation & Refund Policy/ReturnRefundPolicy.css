@@ -1,0 +1,826 @@
+/* ══════════════════════════════
+   PAGE BASE
+══════════════════════════════ */
+.rr-page {
+  min-height: 100vh;
+  background: #f1f3f6;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* ══════════════════════════════
+   HERO
+══════════════════════════════ */
+.rr-hero {
+  background: #2874f0;
+  padding: 40px 0 36px;
+}
+
+.rr-hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.rr-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 2px;
+  padding: 5px 12px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  margin-bottom: 14px;
+  letter-spacing: 0.3px;
+}
+
+.rr-hero-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 10px;
+}
+
+.rr-hero-sub {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0 0 18px;
+  max-width: 520px;
+  line-height: 1.6;
+}
+
+.rr-hero-meta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.rr-meta-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  padding: 5px 12px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ══════════════════════════════
+   STATS STRIP
+══════════════════════════════ */
+.rr-stats-strip {
+  background: #fff;
+  border-bottom: 1px solid #e0e0e0;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.rr-stats-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.rr-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 18px 20px;
+  text-align: center;
+}
+
+.rr-stat-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #2874f0;
+  letter-spacing: 0.2px;
+}
+
+.rr-stat-label {
+  font-size: 12px;
+  color: #878787;
+}
+
+.rr-stat-divider {
+  width: 1px;
+  height: 36px;
+  background: #e0e0e0;
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════
+   BODY LAYOUT
+══════════════════════════════ */
+.rr-body {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 24px 48px;
+}
+
+.rr-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* ══════════════════════════════
+   SIDEBAR TOC
+══════════════════════════════ */
+.rr-toc {
+  position: sticky;
+  top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.rr-toc-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.rr-toc-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  background: #2874f0;
+  margin: 0;
+  padding: 12px 16px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.rr-toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 6px 0;
+}
+
+.rr-toc-list li { margin: 0; }
+
+.rr-toc-btn {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 9px 16px;
+  font-size: 13px;
+  color: #555;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+  border-left: 3px solid transparent;
+  line-height: 1.4;
+  font-family: inherit;
+}
+
+.rr-toc-btn:hover {
+  background: #f5f5f5;
+  color: #212121;
+}
+
+.rr-toc-btn.active {
+  background: #f0f4ff;
+  color: #2874f0;
+  font-weight: 600;
+  border-left-color: #2874f0;
+}
+
+.rr-toc-num {
+  color: #2874f0;
+  font-weight: 600;
+  flex-shrink: 0;
+  font-size: 12px;
+  margin-top: 1px;
+}
+
+/* ── Quick Help Card ── */
+.rr-help-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+}
+
+.rr-help-icon {
+  width: 40px;
+  height: 40px;
+  background: #e8f0fe;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #2874f0;
+  margin-bottom: 4px;
+}
+
+.rr-help-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #212121;
+  margin: 0;
+}
+
+.rr-help-sub {
+  font-size: 12px;
+  color: #878787;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.rr-help-btn {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  padding: 9px 0;
+  background: #2874f0;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 2px;
+  text-decoration: none;
+  text-align: center;
+  transition: background 0.15s;
+}
+
+.rr-help-btn:hover { background: #1a5abf; }
+
+.rr-help-phone {
+  font-size: 13px;
+  font-weight: 500;
+  color: #2874f0;
+  text-decoration: none;
+}
+
+.rr-help-phone:hover { text-decoration: underline; }
+
+/* ══════════════════════════════
+   MAIN CONTENT
+══════════════════════════════ */
+.rr-main {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Notice ── */
+.rr-notice {
+  display: flex;
+  gap: 14px;
+  background: #fff8e1;
+  border: 1px solid #ffe082;
+  border-left: 4px solid #f9a825;
+  border-radius: 4px;
+  padding: 16px 20px;
+  align-items: flex-start;
+}
+
+.rr-notice-icon {
+  color: #f9a825;
+  font-size: 16px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.rr-notice p {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ── Section Card ── */
+.rr-section {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  scroll-margin-top: 90px;
+}
+
+.rr-section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid #f0f0f0;
+  background: #fafafa;
+}
+
+.rr-section-icon {
+  width: 34px;
+  height: 34px;
+  background: #e8f0fe;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #2874f0;
+  flex-shrink: 0;
+}
+
+.rr-section-icon.red {
+  background: #fce4ec;
+  color: #c62828;
+}
+
+.rr-section-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #212121;
+  margin: 0;
+}
+
+.rr-section-body {
+  padding: 20px;
+}
+
+.rr-section-body p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.7;
+  margin: 0 0 12px;
+}
+
+/* ── Lists ── */
+.rr-list {
+  list-style: none;
+  margin: 8px 0 12px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rr-list li {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+  padding-left: 16px;
+  position: relative;
+}
+
+.rr-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #2874f0;
+}
+
+.rr-list-check li::before {
+  content: '✓';
+  width: auto;
+  height: auto;
+  background: none;
+  color: #388e3c;
+  font-size: 12px;
+  font-weight: 700;
+  top: 2px;
+}
+
+.rr-list strong { color: #212121; }
+.rr-list:last-child { margin-bottom: 0; }
+
+/* ── Eligibility Grid ── */
+.rr-eligibility-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.rr-eligibility-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px;
+  background: #f0f4ff;
+  border: 1px solid #c5d8ff;
+  border-radius: 4px;
+}
+
+.rr-eligibility-label {
+  font-size: 11px;
+  color: #2874f0;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.rr-eligibility-value {
+  font-size: 13px;
+  color: #212121;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* ── Non-Returnable Grid ── */
+.rr-nonreturn-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.rr-nonreturn-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px;
+  background: #fff5f5;
+  border: 1px solid #ffcdd2;
+  border-radius: 4px;
+}
+
+.rr-nonreturn-emoji {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.rr-nonreturn-item strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #c62828;
+}
+
+.rr-nonreturn-item span {
+  font-size: 11px;
+  color: #878787;
+}
+
+/* ── Refund Steps ── */
+.rr-refund-steps {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.rr-refund-step {
+  flex: 1;
+  min-width: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+}
+
+.rr-refund-step-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #2874f0;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.rr-refund-step-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.rr-refund-step-text strong {
+  font-size: 13px;
+  font-weight: 600;
+  color: #212121;
+}
+
+.rr-refund-step-text span {
+  font-size: 12px;
+  color: #666;
+  line-height: 1.4;
+}
+
+.rr-refund-arrow {
+  font-size: 20px;
+  color: #c8c8c8;
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+
+/* ── Cancel Cards ── */
+.rr-cancel-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.rr-cancel-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px;
+  border-radius: 4px;
+  border: 1px solid;
+}
+
+.rr-cancel-card.allowed {
+  background: #e8f5e9;
+  border-color: #a5d6a7;
+}
+
+.rr-cancel-card.restricted {
+  background: #fce4ec;
+  border-color: #f48fb1;
+}
+
+.rr-cancel-card-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.rr-cancel-card.allowed .rr-cancel-card-icon {
+  background: #388e3c;
+  color: #fff;
+}
+
+.rr-cancel-card.restricted .rr-cancel-card-icon {
+  background: #c62828;
+  color: #fff;
+}
+
+.rr-cancel-card strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #212121;
+  margin-bottom: 4px;
+}
+
+.rr-cancel-card p {
+  font-size: 13px;
+  color: #555;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── Return Steps ── */
+.rr-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.rr-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.rr-step:last-child { border-bottom: none; }
+
+.rr-step-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #e8f0fe;
+  color: #2874f0;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.rr-step-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.rr-step-content strong {
+  font-size: 14px;
+  font-weight: 600;
+  color: #212121;
+}
+
+.rr-step-content span {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.rr-step-content a {
+  color: #2874f0;
+  text-decoration: none;
+}
+
+.rr-step-content a:hover { text-decoration: underline; }
+
+/* ── Info Boxes ── */
+.rr-info-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  line-height: 1.6;
+  margin-top: 12px;
+  background: #e8f0fe;
+  color: #1a5fb4;
+  border-left: 3px solid #2874f0;
+}
+
+.rr-info-box.success {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left-color: #388e3c;
+}
+
+.rr-info-box.warning {
+  background: #fff8e1;
+  color: #e65100;
+  border-left-color: #f9a825;
+}
+
+.rr-info-box svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  font-size: 13px;
+}
+
+/* ── Contact ── */
+.rr-contact-intro {
+  font-size: 14px;
+  color: #555;
+  margin: 0 0 16px;
+}
+
+.rr-contact-card {
+  background: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.rr-contact-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 14px 20px;
+  border-bottom: 1px solid #e0e0e0;
+  background: #fff;
+}
+
+.rr-contact-brand strong {
+  font-size: 14px;
+  color: #212121;
+}
+
+.rr-contact-brand span {
+  font-size: 13px;
+  color: #878787;
+}
+
+.rr-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.rr-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 20px;
+  border-right: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  text-decoration: none;
+  transition: background 0.12s;
+  color: inherit;
+}
+
+.rr-contact-item:hover { background: #f0f4ff; }
+.rr-contact-item:nth-child(2n) { border-right: none; }
+.rr-contact-item:nth-child(3),
+.rr-contact-item:nth-child(4) { border-bottom: none; }
+
+.rr-contact-item-icon {
+  width: 32px;
+  height: 32px;
+  background: #e8f0fe;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: #2874f0;
+  flex-shrink: 0;
+}
+
+.rr-contact-item div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.rr-contact-label {
+  font-size: 11px;
+  color: #9e9e9e;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  font-weight: 500;
+}
+
+.rr-contact-value {
+  font-size: 13px;
+  color: #212121;
+  line-height: 1.5;
+}
+
+/* ══════════════════════════════
+   RESPONSIVE
+══════════════════════════════ */
+@media (max-width: 900px) {
+  .rr-layout { grid-template-columns: 1fr; }
+  .rr-toc { position: static; }
+
+  .rr-toc-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding: 10px;
+  }
+
+  .rr-toc-btn {
+    border-left: none;
+    border-radius: 2px;
+    border: 1px solid #e0e0e0;
+    padding: 6px 12px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .rr-toc-btn.active {
+    border-color: #2874f0;
+    background: #f0f4ff;
+  }
+
+  .rr-eligibility-grid { grid-template-columns: 1fr 1fr; }
+  .rr-nonreturn-grid { grid-template-columns: 1fr 1fr; }
+  .rr-cancel-cards { grid-template-columns: 1fr; }
+  .rr-contact-grid { grid-template-columns: 1fr; }
+  .rr-contact-item { border-right: none; }
+  .rr-contact-item:nth-child(3) { border-bottom: 1px solid #e0e0e0; }
+
+  .rr-stats-inner {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .rr-stat-divider { display: none; }
+  .rr-stat { width: 50%; border-bottom: 1px solid #f0f0f0; }
+}
+
+@media (max-width: 600px) {
+  .rr-hero { padding: 28px 0 24px; }
+  .rr-hero-title { font-size: 22px; }
+  .rr-body { padding: 16px 16px 40px; }
+  .rr-section-body { padding: 16px; }
+  .rr-eligibility-grid { grid-template-columns: 1fr; }
+  .rr-nonreturn-grid { grid-template-columns: 1fr 1fr; }
+  .rr-refund-steps { flex-direction: column; align-items: center; }
+  .rr-refund-arrow { transform: rotate(90deg); margin: 0; }
+  .rr-stat { width: 100%; }
+}

@@ -1,0 +1,193 @@
+/* .seller-auth-container {
+	min-height: 100vh;
+	display: flex;
+	background: linear-gradient(135deg, #f6f8fd 0%, #f1f4f9 100%);
+	position: relative;
+	overflow: hidden;
+}
+
+.seller-auth-container::before {
+	content: '';
+	position: absolute;
+	width: 1000px;
+	height: 1000px;
+	border-radius: 50%;
+	background: linear-gradient(45deg, #ff6b00 0%, #ff9100 100%);
+	filter: blur(80px);
+	opacity: 0.1;
+	animation: floatGradient 8s ease-in-out infinite;
+	z-index: 0;
+}
+
+@keyframes floatGradient {
+	0%, 100% { transform: translate(0, 0); }
+	50% { transform: translate(30px, 30px); }
+}
+
+.seller-auth-left {
+	flex: 1;
+	padding: 4rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	z-index: 1;
+}
+
+.seller-auth-right {
+	flex: 1;
+	background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+				url('https://img.freepik.com/free-photo/shop-owner-taking-inventory_23-2149543491.jpg');
+	background-size: cover;
+	background-position: center;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	text-align: center;
+	padding: 2rem;
+}
+
+.seller-auth-form {
+	max-width: 450px;
+	width: 100%;
+	background: rgba(255, 255, 255, 0.95);
+	padding: 3rem;
+	border-radius: 24px;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+	backdrop-filter: blur(10px);
+	border: 1px solid rgba(255, 255, 255, 0.8);
+	transition: transform 0.3s ease;
+}
+
+.seller-auth-form:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.seller-auth-form h2 {
+	font-size: 2.5rem;
+	margin-bottom: 2rem;
+	background: linear-gradient(135deg, #ff6b00, #ff9100);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-align: center;
+}
+
+.input-group {
+	position: relative;
+	margin-bottom: 1.5rem;
+}
+
+.input-group input {
+	width: 100%;
+	padding: 1.2rem 1.5rem;
+	border: 2px solid #e5e9f2;
+	border-radius: 16px;
+	font-size: 1.1rem;
+	transition: all 0.3s ease;
+	background: rgba(255, 255, 255, 0.9);
+}
+
+.input-group input:focus {
+	border-color: #ff6b00;
+	box-shadow: 0 0 0 4px rgba(255, 107, 0, 0.1);
+	outline: none;
+}
+
+.input-group label {
+	position: absolute;
+	left: 1rem;
+	top: 50%;
+	transform: translateY(-50%);
+	padding: 0 0.5rem;
+	color: #666;
+	transition: all 0.3s ease;
+	pointer-events: none;
+	background: white;
+}
+
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+	top: 0;
+	font-size: 0.9rem;
+	color: #ff6b00;
+}
+
+.seller-auth-btn {
+	width: 100%;
+	padding: 1.2rem;
+	border: none;
+	border-radius: 16px;
+	font-size: 1.1rem;
+	font-weight: 600;
+	color: white;
+	background: linear-gradient(135deg, #ff6b00, #ff9100);
+	cursor: pointer;
+	transition: all 0.3s ease;
+	margin-top: 1rem;
+}
+
+.seller-auth-btn:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 10px 20px rgba(255, 107, 0, 0.2);
+}
+
+.auth-switch {
+	text-align: center;
+	margin-top: 2rem;
+	padding-top: 1rem;
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.auth-switch button {
+	background: none;
+	border: none;
+	color: #ff6b00;
+	font-size: 1rem;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	padding: 0.5rem 1rem;
+	border-radius: 8px;
+}
+
+.auth-switch button:hover {
+	background: rgba(255, 107, 0, 0.1);
+	color: #ff9100;
+}
+
+@media (max-width: 1024px) {
+	.seller-auth-container {
+		flex-direction: column;
+	}
+	
+	.seller-auth-right {
+		display: none;
+	}
+	
+	.seller-auth-left {
+		padding: 2rem;
+	}
+
+	.seller-auth-form {
+		margin: 2rem;
+	}
+}
+
+@media (max-width: 480px) {
+	.seller-auth-form {
+		padding: 2rem;
+		margin: 1rem;
+	}
+	
+	.seller-auth-form h2 {
+		font-size: 2rem;
+	}
+	
+	.input-group input {
+		padding: 1rem;
+		font-size: 1rem;
+	}
+} */

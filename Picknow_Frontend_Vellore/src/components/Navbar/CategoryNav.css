@@ -1,0 +1,309 @@
+.category-nav-wrapper-sleek {
+  position: fixed;
+  top: var(--nav-height);
+  width: 100%;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px) saturate(180%);
+  z-index: 1050;
+  border-bottom: 1px solid var(--glass-border);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: var(--transition-smooth), height 0.4s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  overflow: visible !important;
+  max-width: 100vw;
+}
+
+.category-nav-wrapper-sleek.scrolled-minimal {
+  top: var(--nav-height-scrolled);
+  height: 70px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+@media (max-width: 1024px) {
+  .category-nav-wrapper-sleek {
+    /* Keep it visible on tablet/mobile but adjust height */
+    height: 80px;
+    top: calc(var(--nav-height) - 10px);
+    /* Adjust to tuck tightly under nav */
+  }
+}
+
+.category-nav-container-sleek {
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .category-nav-container-sleek {
+    padding: 0 1rem;
+  }
+}
+
+.category-scroll-area {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  justify-content: safe center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 5px 0;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 768px) {
+  .category-nav-wrapper-sleek {
+    height: 75px;
+    border-bottom: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .category-nav-wrapper-sleek.scrolled-minimal {
+    height: 55px;
+  }
+
+  .category-scroll-area {
+    gap: 1rem;
+    justify-content: flex-start;
+    padding: 0 0.5rem;
+    scroll-padding-left: 0.5rem;
+  }
+}
+
+.category-scroll-area::-webkit-scrollbar {
+  display: none;
+}
+
+.cat-item-sleek {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  min-width: 85px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  padding: 8px 0;
+}
+
+@media (max-width: 768px) {
+  .cat-item-sleek {
+    min-width: 65px;
+    gap: 4px;
+    padding: 4px 0;
+  }
+
+  .scrolled-minimal .cat-item-sleek {
+    min-width: 65px;
+    padding: 6px 0;
+  }
+}
+
+.cat-item-sleek:hover {
+  transform: translateY(-5px);
+}
+
+.scrolled-minimal .cat-item-sleek {
+  flex-direction: column;
+  gap: 0;
+  min-width: 85px;
+  height: auto;
+  padding: 10px 0;
+  margin-top: 0;
+  background: transparent;
+  border: none;
+  align-self: center;
+}
+
+.scrolled-minimal .cat-item-sleek:hover {
+  background: transparent;
+  border: none;
+  transform: translateY(-2px);
+  box-shadow: none;
+}
+
+.scrolled-minimal .cat-item-sleek.active {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  transform: none;
+}
+
+.scrolled-minimal .cat-item-sleek.active .cat-name-sleek {
+  color: var(--brand-blue);
+  font-weight: 800;
+  position: relative;
+}
+
+.scrolled-minimal .cat-item-sleek.active .cat-name-sleek::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 3px;
+  background: var(--brand-orange);
+  border-radius: 2px;
+}
+
+.scrolled-minimal .cat-icon-container {
+  width: 0;
+  height: 0;
+  opacity: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: none;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scrolled-minimal .cat-icon-container img {
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.scrolled-minimal .cat-name-sleek {
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0;
+  color: #334155;
+}
+
+@media (max-width: 768px) {
+  .scrolled-minimal .cat-name-sleek {
+    font-size: 0.8rem;
+  }
+}
+
+.cat-icon-container {
+  width: 46px;
+  height: 46px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8fafc;
+  border-radius: 18px;
+  border: 2px solid white;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 768px) {
+  .cat-icon-container {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+  }
+}
+
+.cat-icon-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cat-item-sleek:hover .cat-icon-container img {
+  transform: scale(1.1);
+}
+
+.cat-item-sleek:hover .cat-icon-container {
+  background: #ffffff;
+  border-color: var(--brand-blue);
+  box-shadow: 0 12px 25px -5px rgba(0, 114, 206, 0.15);
+  transform: scale(1.05);
+}
+
+.cat-name-sleek {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #334155;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .cat-name-sleek {
+    font-size: 0.75rem;
+  }
+}
+
+.cat-item-sleek:hover .cat-name-sleek {
+  color: var(--brand-blue);
+}
+
+.cat-item-sleek.active .cat-name-sleek {
+  color: var(--brand-blue);
+  font-weight: 800;
+}
+
+.cat-item-sleek.more-item {
+  background: var(--brand-blue-light);
+  border: 1px dashed var(--brand-blue);
+  min-width: 100px;
+}
+
+.scrolled-minimal .cat-item-sleek.more-item {
+  background: #f1f5f9;
+  border: 1px dashed #cbd5e1;
+}
+
+/* SCROLL ARROWS */
+.scroll-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  color: var(--brand-blue);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+  opacity: 0;
+}
+
+.category-nav-container-sleek:hover .scroll-arrow {
+  opacity: 1;
+}
+
+.scroll-arrow:hover {
+  background: var(--brand-blue);
+  color: white;
+  border-color: var(--brand-blue);
+}
+
+.scroll-arrow.left {
+  left: 10px;
+}
+
+.scroll-arrow.right {
+  right: 10px;
+}
+
+.scrolled-minimal .scroll-arrow {
+  width: 28px;
+  height: 28px;
+}

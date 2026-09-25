@@ -1,0 +1,432 @@
+/* NavbarVendor.css */
+
+.vendor-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Scrolled State */
+.vendor-navbar.scrolled {
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Container */
+.vendor-navbar-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  position: relative;
+}
+
+/* Logo */
+.vendor-navbar-logo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  z-index: 1001;
+}
+
+.vendor-navbar-logo:hover {
+  transform: translateY(-2px);
+}
+
+.vendor-navbar-logo a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.vendor-navbar-logo img {
+  height: 45px;
+  width: auto;
+  object-fit: contain;
+  transition: filter 0.3s ease;
+}
+
+.vendor-navbar-logo:hover img {
+  filter: brightness(1.1);
+}
+
+.vendor-navbar-logo h1 {
+  font-size: 1.8rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #4a90e2 0%, #6366f1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+/* Mobile Toggle Button */
+.vendor-navbar-mobile-toggle {
+  display: none;
+  cursor: pointer;
+  color: #111827;
+  padding: 8px;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  z-index: 1001;
+}
+
+.vendor-navbar-mobile-toggle:hover {
+  background: rgba(74, 144, 226, 0.1);
+  color: #4a90e2;
+}
+
+.vendor-navbar-mobile-toggle:active {
+  transform: scale(0.95);
+}
+
+/* Navigation Menu */
+.vendor-navbar-menu {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.vendor-navbar-item {
+  position: relative;
+}
+
+.vendor-navbar-item a {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #374151;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  position: relative;
+  letter-spacing: 0.01em;
+}
+
+/* Hover Effect for Regular Links */
+.vendor-navbar-item a:not(.register-btn):hover {
+  color: #4a90e2;
+  background: rgba(74, 144, 226, 0.08);
+}
+
+.vendor-navbar-item a:not(.register-btn)::after {
+  content: '';
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 60%;
+  height: 2px;
+  background: linear-gradient(90deg, #4a90e2 0%, #6366f1 100%);
+  border-radius: 2px;
+  transition: transform 0.3s ease;
+}
+
+.vendor-navbar-item a:not(.register-btn):hover::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* Register Button */
+.register-btn {
+  background: linear-gradient(135deg, #4a90e2 0%, #6366f1 100%);
+  color: white !important;
+  padding: 12px 28px !important;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+  transition: all 0.3s ease;
+  font-weight: 700;
+  margin-left: 8px;
+}
+
+.register-btn::after {
+  display: none !important;
+}
+
+.register-btn:hover {
+  background: linear-gradient(135deg, #5b9eee 0%, #7c78ff 100%) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(74, 144, 226, 0.4);
+}
+
+.register-btn:active {
+  transform: translateY(0);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+======================================== */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .vendor-navbar-container {
+    padding: 0 20px;
+    height: 70px;
+  }
+
+  .vendor-navbar-logo img {
+    height: 40px;
+  }
+
+  .vendor-navbar-item a {
+    font-size: 0.9rem;
+    padding: 9px 16px;
+  }
+
+  .register-btn {
+    padding: 10px 24px !important;
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+  .vendor-navbar-container {
+    height: 65px;
+    padding: 0 16px;
+  }
+
+  .vendor-navbar-logo img {
+    height: 38px;
+  }
+
+  /* Show Mobile Toggle */
+  .vendor-navbar-mobile-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Mobile Menu */
+  .vendor-navbar-menu {
+    position: fixed;
+    top: 65px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    padding: 16px 0;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-bottom: 1px solid transparent;
+  }
+
+  .vendor-navbar-menu.active {
+    max-height: 500px;
+    opacity: 1;
+    border-bottom-color: rgba(0, 0, 0, 0.05);
+  }
+
+  .vendor-navbar-item {
+    width: 100%;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+  }
+
+  .vendor-navbar-menu.active .vendor-navbar-item {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Staggered Animation */
+  .vendor-navbar-menu.active .vendor-navbar-item:nth-child(1) {
+    transition-delay: 0.1s;
+  }
+
+  .vendor-navbar-menu.active .vendor-navbar-item:nth-child(2) {
+    transition-delay: 0.15s;
+  }
+
+  .vendor-navbar-menu.active .vendor-navbar-item:nth-child(3) {
+    transition-delay: 0.2s;
+  }
+
+  .vendor-navbar-menu.active .vendor-navbar-item:nth-child(4) {
+    transition-delay: 0.25s;
+  }
+
+  .vendor-navbar-menu.active .vendor-navbar-item:nth-child(5) {
+    transition-delay: 0.3s;
+  }
+
+  .vendor-navbar-item a {
+    display: block;
+    padding: 16px 24px;
+    border-radius: 0;
+    font-size: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .vendor-navbar-item a:not(.register-btn)::after {
+    display: none;
+  }
+
+  .vendor-navbar-item a:not(.register-btn):hover {
+    background: rgba(74, 144, 226, 0.05);
+    padding-left: 32px;
+  }
+
+  /* Mobile Register Button */
+  .vendor-navbar-item:last-child {
+    padding: 8px 24px 0;
+  }
+
+  .register-btn {
+    margin-left: 0 !important;
+    text-align: center;
+    width: 100%;
+    border-radius: 10px !important;
+    border: none !important;
+    padding: 14px 28px !important;
+  }
+
+  /* Prevent Body Scroll When Menu Open */
+  body.mobile-menu-open {
+    overflow: hidden;
+  }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+  .vendor-navbar-container {
+    height: 60px;
+    padding: 0 12px;
+  }
+
+  .vendor-navbar-logo img {
+    height: 35px;
+  }
+
+  .vendor-navbar-menu {
+    top: 60px;
+  }
+
+  .vendor-navbar-item a {
+    padding: 14px 20px;
+    font-size: 0.95rem;
+  }
+
+  .vendor-navbar-item:last-child {
+    padding: 8px 20px 0;
+  }
+
+  .register-btn {
+    padding: 13px 24px !important;
+    font-size: 0.95rem;
+  }
+}
+
+/* ========================================
+   ADDITIONAL ENHANCEMENTS
+======================================== */
+
+/* Active Link State */
+.vendor-navbar-item a.active {
+  color: #4a90e2;
+  font-weight: 700;
+}
+
+/* Focus States for Accessibility */
+.vendor-navbar-item a:focus,
+.vendor-navbar-mobile-toggle:focus {
+  outline: 2px solid #4a90e2;
+  outline-offset: 2px;
+}
+
+/* Smooth Scrolling for Anchor Links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Loading Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.vendor-navbar {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Navbar Bottom Border on Scroll (Optional Enhancement) */
+.vendor-navbar.scrolled::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(74, 144, 226, 0.3) 50%, 
+    transparent 100%);
+}
+
+/* Print Styles */
+@media print {
+  .vendor-navbar {
+    position: static;
+    box-shadow: none;
+  }
+
+  .vendor-navbar-mobile-toggle,
+  .register-btn {
+    display: none;
+  }
+}
+
+/* Reduce Motion for Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .vendor-navbar,
+  .vendor-navbar-item a,
+  .vendor-navbar-menu,
+  .vendor-navbar-mobile-toggle {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .vendor-navbar {
+    background: #ffffff;
+    border-bottom: 2px solid #000000;
+  }
+
+  .vendor-navbar-item a {
+    color: #000000;
+  }
+
+  .register-btn {
+    background: #000000 !important;
+    color: #ffffff !important;
+  }
+}

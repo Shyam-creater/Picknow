@@ -1,0 +1,23 @@
+# Local configuration and credentials
+**/.env
+**/.env.*
+!**/.env.example
+**/credentials.json
+**/google-services.json
+
+# Dependencies and generated output
+**/node_modules/
+**/dist/
+**/build/
+**/.expo/
+**/.cache/
+*.zip
+
+# Runtime-generated files
+Picknow_Backend_Vellore/uploads/
+Picknow_Backend_Vellore/logs/
+
+# Local tooling and OS files
+.vscode/
+.DS_Store
+Thumbs.db

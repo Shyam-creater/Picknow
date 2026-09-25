@@ -1,0 +1,21 @@
+name: Picknow CI/CD
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: self-hosted
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+    - uses: actions/checkout@v4
+    - run: rm -rf node_modules
+    - run: npm i
+    - run: pm2 reload PicknowBack
+    - run: pm2 reset PicknowBack

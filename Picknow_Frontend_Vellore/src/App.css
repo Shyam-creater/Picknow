@@ -1,0 +1,318 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+#root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.content {
+  padding-top: 60px;
+  /* Height of navbar */
+  flex: 1;
+}
+
+/* Main Content Area */
+.main-content {
+  flex: 1;
+  /* padding-top: 60px; 
+  margin-top: 50px;  */
+  position: relative;
+}
+
+/* App-level CategoryNav styles */
+.app>.category-nav {
+  position: fixed;
+  top: 50px;
+  /* Position below Navbar */
+  left: 0;
+  right: 0;
+  z-index: 990;
+}
+
+/* App-level mega dropdown styles */
+.app>.mega-dropdown {
+  /* top: 100px !important;  */
+  z-index: 989;
+  /* Below CategoryNav but above content */
+}
+
+/* Prevent scroll on body when dropdown is open */
+body.dropdown-open {
+  overflow: hidden;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  /* .main-content {
+    padding-top: 50px;
+    margin-top: 0px;
+  } */
+
+  .app>.mega-dropdown {
+    top: 110px !important;
+  }
+}
+
+/* Rest of existing styles */
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+
+@media (max-width: 480px) {
+  .app>.category-nav+.mega-dropdown {
+    position: fixed;
+    top: 150px !important;
+  }
+}
+
+/* ================================================================
+   SCROLL TO TOP � SURGICAL FLOATING BUTTON
+   ================================================================ */
+.scroll-to-top-surgical {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 54px;
+  height: 54px;
+  background: #ffffff;
+  color: #ff8a00;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px) scale(0.8);
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+  padding: 0;
+}
+
+.scroll-to-top-surgical.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.scroll-to-top-surgical:hover {
+  background: #ff8a00;
+  color: #ffffff;
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 20px 45px rgba(255, 138, 0, 0.3);
+}
+
+.scroll-progress-ring {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scroll-progress-ring svg {
+  width: 32px;
+  height: 32px;
+}
+
+.scroll-to-top-surgical:active {
+  transform: scale(0.92);
+}
+
+@media (max-width: 768px) {
+  .scroll-to-top-surgical {
+    bottom: 25px;
+    right: 25px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .scroll-progress-ring svg {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+/* ================================================================
+   NOTIFICATIONS VISIBILITY FIX
+   ================================================================ */
+/* Force all floating notifications to the absolute top of the stacking context */
+.Toastify__toast-container,
+.SnackbarContainer-root,
+.MuiSnackbar-root,
+.MuiDialog-root,
+.MuiModal-root,
+[class*="SnackbarContainer"],
+[class*="MuiSnackbar"],
+[class*="Toastify"] {
+  z-index: 9999999 !important;
+}
+
+/* Position overrides: Move below the header for high visibility and to avoid blocking icons */
+.SnackbarContainer-topRight,
+[class*="SnackbarContainer-topRight"],
+[class*="SnackbarContainer-anchorOriginTopRight"],
+.Toastify__toast-container--top-right,
+.Toastify__toast-container--top-center,
+.SnackbarContainer-topCenter,
+[class*="SnackbarContainer-topCenter"],
+.MuiSnackbar-anchorOriginTopRight,
+[class*="MuiSnackbar-anchorOriginTopRight"],
+[class*="notistack-SnackbarContainer"] {
+  top: 75px !important;
+  right: 24px !important;
+  left: auto !important;
+  transform: none !important;
+  bottom: auto !important;
+  position: fixed !important;
+}
+
+/* Specific fix for Material UI Snackbar used by Notistack */
+.MuiSnackbar-root.MuiSnackbar-anchorOriginTopRight {
+  top: 140px !important;
+}
+
+/* Style the snacks for premium look */
+.SnackbarContainer-root .MuiPaper-root,
+.MuiSnackbarContent-root,
+.Toastify__toast {
+  z-index: 9999999 !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
+  border-radius: 8px !important;
+  font-weight: 500 !important;
+}
+
+/* ================================================================
+   PRIME MODAL SYSTEM (Global)
+   ================================================================ */
+.prime-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000000;
+  padding: 24px;
+  backdrop-filter: blur(4px);
+  animation: fadeInOverlay 0.3s ease;
+}
+
+@keyframes fadeInOverlay {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.prime-modal {
+  background: #fff;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 500px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalSlideUp {
+  from { opacity: 0; transform: translateY(40px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.prime-modal-body {
+  padding: 32px 24px;
+}
+
+.prime-modal-footer {
+  padding: 16px 24px;
+  background: #f8f9fa;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.prime-btn {
+  height: 42px;
+  padding: 0 24px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.prime-btn-secondary {
+  background: #fff;
+  border: 1px solid #ddd;
+  color: #444;
+}
+
+.prime-btn-secondary:hover {
+  background: #f0f0f0;
+  border-color: #ccc;
+}
+
+.prime-btn-primary {
+  background: #fb641b;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(251, 100, 27, 0.2);
+}
+
+.prime-btn-primary:hover {
+  background: #e65a16;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 15px rgba(251, 100, 27, 0.3);
+}
+
+.prime-btn-primary:active {
+  transform: translateY(0);
+}

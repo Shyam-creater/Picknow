@@ -1,0 +1,183 @@
+/* =========================================================
+   latestSlider.css - Rich Meta Gradient Orange Theme
+   ========================================================= */
+
+.latest-products-section {
+  padding: 5rem 0;
+  background-color: var(--light-bg);
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.latest-products-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(180deg, rgba(255, 140, 0, 0.03), transparent);
+  pointer-events: none;
+}
+
+
+.latest-products-slider {
+  padding: 1rem 1rem 3rem 1rem;
+  margin: 0 auto;
+}
+
+/* Swiper Navigation Styles */
+.swiper-button-next,
+.swiper-button-prev {
+  color: white !important;
+  background: var(--meta-gradient) !important;
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 50%;
+  box-shadow: 0 4px 15px rgba(255, 94, 0, 0.3) !important;
+  position: absolute;
+  top: 40% !important;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease !important;
+  cursor: pointer;
+  border: none !important;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-size: 1.2rem !important;
+  font-weight: bold;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  transform: translateY(-50%) scale(1.1) !important;
+  box-shadow: 0 8px 20px rgba(255, 94, 0, 0.4) !important;
+}
+
+.swiper-button-disabled {
+  opacity: 0.5 !important;
+  background: #cbd5e1 !important;
+  box-shadow: none !important;
+  cursor: not-allowed !important;
+}
+
+/* Pagination dots */
+.latest-pagination {
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  gap: 8px;
+  display: flex;
+  justify-content: center;
+}
+
+.latest-pagination .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: #cbd5e1;
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.latest-pagination .swiper-pagination-bullet-active {
+  width: 30px;
+  border-radius: 999px;
+  background: var(--meta-gradient);
+}
+
+/* Slider specific card widths for auto fluid layout */
+.latest-products-slider .swiper-slide {
+  width: 240px;
+  /* Base width on very small mobile */
+  height: auto;
+}
+
+@media (min-width: 480px) {
+  .latest-products-slider .swiper-slide {
+    width: 260px;
+  }
+}
+
+@media (min-width: 768px) {
+  .latest-products-slider .swiper-slide {
+    width: 280px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .latest-products-slider .swiper-slide {
+    width: 300px;
+  }
+}
+
+/* Mobile Responsiveness for smaller screens */
+@media (max-width: 576px) {
+  .latest-products-slider {
+    padding-left: 0;
+    padding-right: 0;
+    margin: 2.5rem;
+  }
+
+  .latest-products-slider .hd-card {
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .latest-products-slider .hd-thumb {
+    aspect-ratio: 1/1;
+  }
+
+  .latest-products-slider .hd-card-head {
+    padding: 0.5rem 0.5rem 0;
+  }
+
+  .latest-products-slider .hd-badge {
+    top: 10px;
+    right: 10px;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .latest-products-slider .hd-card-body {
+    padding: 0.75rem;
+  }
+
+  .latest-products-slider .hd-name {
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .latest-products-slider .hd-price-row {
+    gap: 0.25rem;
+  }
+
+  .latest-products-slider .hd-price {
+    font-size: 1rem;
+  }
+
+  .latest-products-slider .hd-price-strike {
+    font-size: 0.8rem;
+  }
+
+  .latest-products-slider .px-3.pb-3.mt-auto {
+    padding: 0 0.75rem 0.75rem 0.75rem !important;
+  }
+
+  .latest-products-slider select.form-select {
+    padding: 0.3rem 1.25rem 0.3rem 0.5rem;
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .latest-products-slider .btn {
+    padding: 0.4rem;
+    font-size: 0.8rem;
+  }
+}

@@ -1,0 +1,332 @@
+/* ══════════════════════════════
+   FOOTER BASE
+══════════════════════════════ */
+.fk-footer {
+  width: 100%;
+  background: #172337;
+  font-family: 'Roboto', sans-serif;
+  margin-top: auto;
+}
+
+.fk-footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ══════════════════════════════
+   TOP STRIP
+══════════════════════════════ */
+.fk-footer-top-strip {
+  background: #1d2d44;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 16px 0;
+}
+
+.fk-footer-strip-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.fk-footer-inner.fk-footer-top-strip .fk-footer-inner,
+.fk-footer-top-strip .fk-footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.fk-footer-top-strip > .fk-footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.fk-footer-logo {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+  margin: -11px 0; /* Prevents container height from expanding */
+}
+
+.fk-footer-tagline {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  padding-left: 20px;
+  letter-spacing: 0.2px;
+}
+
+/* Social Buttons */
+.fk-footer-social-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fk-social-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+
+.fk-social-btn:hover {
+  background: #2874f0;
+  border-color: #2874f0;
+  color: #fff;
+}
+
+/* ══════════════════════════════
+   MAIN FOOTER GRID
+══════════════════════════════ */
+.fk-footer-main {
+  padding: 40px 0 32px;
+}
+
+.fk-footer-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1.2fr 1.4fr 1.2fr;
+  gap: 24px;
+}
+
+/* ── Column ── */
+.fk-footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Heading ── */
+.fk-footer-heading {
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin: 0 0 4px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ── About Text ── */
+.fk-footer-about-text {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ── Links List ── */
+.fk-footer-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.fk-footer-link {
+  background: none;
+  border: none;
+  padding: 5px 0;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  text-align: left;
+  text-decoration: none;
+  display: block;
+  font-family: inherit;
+}
+
+.fk-footer-link:hover {
+  color: #fff;
+
+}
+
+/* ── Contact ── */
+.fk-footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.fk-contact-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.fk-contact-icon {
+  width: 28px;
+  height: 28px;
+  background: rgba(40, 116, 240, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #5a9fff;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.fk-contact-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.fk-contact-link {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  transition: color 0.15s;
+  display: block;
+}
+
+.fk-contact-link:hover {
+  color: #fff;
+}
+
+.fk-contact-address {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+  font-style: normal;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── App Buttons ── */
+.fk-app-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 8px 14px;
+  border-radius: 6px;
+  color: #fff;
+  text-decoration: none;
+  margin-bottom: 8px; /* space between buttons was overlapping */
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.fk-app-btn:hover {
+  background: rgba(40, 116, 240, 0.2);
+  border-color: #2874f0;
+}
+
+.fk-app-icon {
+  font-size: 24px;
+  color: #fff;
+}
+
+.fk-app-text-sm {
+  display: block;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.fk-app-text-lg {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* ══════════════════════════════
+   BOTTOM BAR
+══════════════════════════════ */
+.fk-footer-bottom {
+  background: #0f1c2e;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 14px 0;
+}
+
+.fk-footer-bottom-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.fk-footer-copyright {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.35);
+  margin: 0;
+}
+
+.fk-footer-bottom-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fk-footer-bottom-link {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.35);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.fk-footer-bottom-link:hover {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.fk-footer-bottom-sep {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.2);
+}
+
+/* ══════════════════════════════
+   RESPONSIVE
+══════════════════════════════ */
+@media (max-width: 1024px) {
+  .fk-footer-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 28px 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .fk-footer-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .fk-footer-top-strip > .fk-footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .fk-footer-tagline {
+    display: none;
+  }
+
+  .fk-footer-bottom-inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .fk-footer-main {
+    padding: 28px 0 24px;
+  }
+}

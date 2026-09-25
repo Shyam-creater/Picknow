@@ -1,0 +1,69 @@
+{
+  "expo": {
+    "name": "Picknow",
+    "slug": "Picknow",
+    "version": "1.4.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/appicon.png",
+    "scheme": "picknow",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.picknowapp"
+    },
+    "android": {
+      "package": "com.picknowapp",
+      "versionCode": 2,
+      "adaptiveIcon": {
+        "backgroundColor": "#FFFFFF",
+        "foregroundImage": "./assets/images/appicon.png"
+      },
+      "googleServicesFile": "./google-services.json",
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#ffffff",
+          "image": "./assets/images/unnamed-removebg-preview.png",
+          "imageWidth": 200,
+          "resizeMode": "contain"
+        }
+      ],
+      "expo-video",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/images/appicon.png",
+          "color": "#F38000"
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "kotlinVersion": "2.0.20"
+          }
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": false
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "830267c5-9394-46ef-b4aa-ff4e0f7a9eb1"
+      }
+    }
+  }
+}

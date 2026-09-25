@@ -1,0 +1,57 @@
+.snackbar {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: white;
+  min-width: 300px;
+  max-width: 500px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+  z-index: 9999;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.snackbar.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.snackbar.success {
+  background: #2ed573;
+  color: white;
+}
+
+.snackbar.error {
+  background: #f33d36;
+  color: white;
+}
+
+.snackbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.snackbar-message {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.snackbar-close {
+  background: none;
+  border: none;
+  color: currentColor;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0 0.5rem;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.snackbar-close:hover {
+  opacity: 1;
+}

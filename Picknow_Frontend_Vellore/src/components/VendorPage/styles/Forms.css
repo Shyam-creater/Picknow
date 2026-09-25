@@ -1,0 +1,843 @@
+/* ============================================================
+   VENDOR REGISTRATION FORM — Professional Styles
+   Font: Sora (display) + DM Sans (body)
+   Theme: Clean enterprise with emerald accent
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap');
+
+/* ── Reset & Root Variables ─────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --emerald:        #10b981;
+  --emerald-dark:   #059669;
+  --emerald-light:  #d1fae5;
+  --blue-brand:     #1d4ed8;
+  --blue-mid:       #3b82f6;
+  --blue-light:     #eff6ff;
+  --neutral-50:     #f8fafc;
+  --neutral-100:    #f1f5f9;
+  --neutral-200:    #e2e8f0;
+  --neutral-400:    #94a3b8;
+  --neutral-600:    #475569;
+  --neutral-800:    #1e293b;
+  --neutral-900:    #0f172a;
+  --danger:         #ef4444;
+  --radius-sm:      8px;
+  --radius-md:      12px;
+  --radius-lg:      20px;
+  --radius-xl:      28px;
+  --shadow-card:    0 4px 24px rgba(15, 23, 42, 0.10), 0 1px 4px rgba(15, 23, 42, 0.06);
+  --shadow-hover:   0 16px 48px rgba(15, 23, 42, 0.14), 0 4px 12px rgba(15, 23, 42, 0.08);
+  --shadow-input:   0 2px 8px rgba(59, 130, 246, 0.12);
+  --transition:     all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --font-display:   'Sora', sans-serif;
+  --font-body:      'DM Sans', sans-serif;
+}
+
+/* ── Page Background ────────────────────────────────────────── */
+.page-container {
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% -10%, rgba(16, 185, 129, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 90% 100%, rgba(29, 78, 216, 0.07) 0%, transparent 60%),
+    #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 16px;
+  font-family: var(--font-body);
+}
+
+/* ── Form Card ──────────────────────────────────────────────── */
+.form-card {
+  background: #ffffff;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  padding: 48px 52px;
+  width: 100%;
+  max-width: 580px;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.form-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--emerald) 0%, var(--blue-mid) 100%);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+.form-card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+}
+
+/* ── Header ─────────────────────────────────────────────────── */
+.form-header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.form-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, var(--emerald), var(--blue-mid));
+  border-radius: 16px;
+  margin-bottom: 20px;
+}
+
+.form-logo svg {
+  width: 28px;
+  height: 28px;
+  color: #fff;
+}
+
+.form-title {
+  font-family: var(--font-display);
+  font-size: 1.875rem;
+  font-weight: 800;
+  color: var(--neutral-900);
+  letter-spacing: -0.02em;
+  margin: 0 0 6px;
+  line-height: 1.2;
+}
+
+.form-subtitle {
+  font-size: 0.9375rem;
+  color: var(--neutral-400);
+  font-weight: 400;
+  margin: 0;
+}
+
+/* ── Stepper ────────────────────────────────────────────────── */
+.stepper-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+  gap: 0;
+}
+
+.step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  position: relative;
+  gap: 8px;
+}
+
+.step-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: calc(50% + 20px);
+  right: calc(-50% + 20px);
+  height: 2px;
+  background: var(--neutral-200);
+  transition: background 0.4s ease;
+  z-index: 0;
+}
+
+.step-item.completed:not(:last-child)::after {
+  background: var(--emerald);
+}
+
+.step-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--neutral-200);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--neutral-400);
+  position: relative;
+  z-index: 1;
+  transition: var(--transition);
+}
+
+.step-item.active .step-circle {
+  border-color: var(--blue-brand);
+  background: var(--blue-brand);
+  color: #fff;
+  box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.15);
+}
+
+.step-item.completed .step-circle {
+  border-color: var(--emerald);
+  background: var(--emerald);
+  color: #fff;
+}
+
+.step-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--neutral-400);
+  text-align: center;
+  line-height: 1.3;
+  white-space: nowrap;
+  transition: color 0.25s ease;
+}
+
+.step-item.active .step-label {
+  color: var(--blue-brand);
+}
+
+.step-item.completed .step-label {
+  color: var(--emerald);
+}
+
+/* ── Section Title ──────────────────────────────────────────── */
+.section-title {
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--neutral-800);
+  margin: 0 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-title::before {
+  content: '';
+  display: block;
+  width: 4px;
+  height: 18px;
+  background: linear-gradient(180deg, var(--emerald), var(--blue-mid));
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* ── Input Fields ───────────────────────────────────────────── */
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.field-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--neutral-600);
+  letter-spacing: 0.01em;
+}
+
+/* Override MUI TextField styles */
+.MuiOutlinedInput-root {
+  font-family: var(--font-body) !important;
+  border-radius: var(--radius-md) !important;
+  background: var(--neutral-50) !important;
+  transition: var(--transition) !important;
+}
+
+.MuiOutlinedInput-root:hover {
+  background: #fff !important;
+  box-shadow: var(--shadow-input) !important;
+  transform: translateY(-1px) !important;
+}
+
+.MuiOutlinedInput-root.Mui-focused {
+  background: #fff !important;
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.12), var(--shadow-input) !important;
+}
+
+.MuiOutlinedInput-notchedOutline {
+  border-color: var(--neutral-200) !important;
+  border-width: 1.5px !important;
+}
+
+.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: var(--blue-mid) !important;
+}
+
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: var(--blue-brand) !important;
+  border-width: 2px !important;
+}
+
+.MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline {
+  border-color: var(--danger) !important;
+}
+
+.MuiInputLabel-root {
+  font-family: var(--font-body) !important;
+  font-size: 0.9375rem !important;
+  color: var(--neutral-400) !important;
+}
+
+.MuiInputLabel-root.Mui-focused {
+  color: var(--blue-brand) !important;
+}
+
+.MuiInputBase-input {
+  font-family: var(--font-body) !important;
+  font-size: 0.9375rem !important;
+  color: var(--neutral-800) !important;
+  padding: 14px 16px !important;
+}
+
+.MuiFormHelperText-root {
+  font-family: var(--font-body) !important;
+  font-size: 0.75rem !important;
+  margin-top: 4px !important;
+}
+
+/* Password toggle icon */
+.MuiIconButton-root {
+  color: var(--neutral-400) !important;
+  transition: var(--transition) !important;
+}
+
+.MuiIconButton-root:hover {
+  color: var(--blue-brand) !important;
+  background: var(--blue-light) !important;
+}
+
+/* Select dropdown */
+.MuiSelect-select {
+  font-family: var(--font-body) !important;
+  font-size: 0.9375rem !important;
+  color: var(--neutral-800) !important;
+}
+
+/* ── Primary Submit Button ──────────────────────────────────── */
+.btn-primary {
+  width: 100%;
+  padding: 15px 24px;
+  border-radius: var(--radius-md);
+  border: none;
+  font-family: var(--font-display) !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.01em;
+  background: linear-gradient(135deg, var(--emerald) 0%, #059669 100%);
+  color: #fff;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+  text-transform: none !important;
+  margin-top: 8px !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.45);
+}
+
+.btn-primary:hover::after {
+  opacity: 1;
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}
+
+.btn-primary:disabled {
+  background: var(--neutral-200) !important;
+  color: var(--neutral-400) !important;
+  box-shadow: none;
+  transform: none;
+  cursor: not-allowed;
+}
+
+/* Override MUI Button to match above */
+.MuiButton-containedPrimary.btn-submit {
+  background: linear-gradient(135deg, var(--emerald) 0%, #059669 100%) !important;
+  border-radius: var(--radius-md) !important;
+  font-family: var(--font-display) !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+  padding: 14px 24px !important;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35) !important;
+  letter-spacing: 0.01em !important;
+  transition: var(--transition) !important;
+}
+
+.MuiButton-containedPrimary.btn-submit:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.45) !important;
+  background: linear-gradient(135deg, #0d9e72 0%, #047857 100%) !important;
+}
+
+/* Resend OTP secondary button */
+.MuiButton-outlinedPrimary.btn-secondary {
+  border-radius: var(--radius-md) !important;
+  font-family: var(--font-display) !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  padding: 14px 24px !important;
+  font-size: 0.9375rem !important;
+  border-color: var(--emerald) !important;
+  color: var(--emerald) !important;
+  transition: var(--transition) !important;
+}
+
+.MuiButton-outlinedPrimary.btn-secondary:hover {
+  background: var(--emerald-light) !important;
+  border-color: var(--emerald-dark) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* ── OTP Section ────────────────────────────────────────────── */
+.otp-info-card {
+  background: linear-gradient(135deg, var(--blue-light) 0%, rgba(240, 253, 244, 0.8) 100%);
+  border: 1.5px solid rgba(29, 78, 216, 0.12);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.otp-info-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--blue-brand);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.otp-info-text {
+  flex: 1;
+}
+
+.otp-info-text p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--neutral-600);
+  line-height: 1.5;
+}
+
+.otp-info-text strong {
+  font-weight: 700;
+  color: var(--blue-brand);
+  font-size: 0.9375rem;
+  display: block;
+  margin-top: 2px;
+}
+
+/* ── Stepper MUI Override ───────────────────────────────────── */
+.MuiStepper-root {
+  padding: 0 !important;
+  margin-bottom: 36px !important;
+}
+
+.MuiStepLabel-label {
+  font-family: var(--font-body) !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  margin-top: 6px !important;
+}
+
+.MuiStepLabel-label.Mui-active {
+  color: var(--blue-brand) !important;
+}
+
+.MuiStepLabel-label.Mui-completed {
+  color: var(--emerald) !important;
+}
+
+.MuiStepIcon-root {
+  color: var(--neutral-200) !important;
+  width: 36px !important;
+  height: 36px !important;
+  transition: var(--transition) !important;
+}
+
+.MuiStepIcon-root.Mui-active {
+  color: var(--blue-brand) !important;
+  filter: drop-shadow(0 0 6px rgba(29, 78, 216, 0.3));
+}
+
+.MuiStepIcon-root.Mui-completed {
+  color: var(--emerald) !important;
+}
+
+.MuiStepIcon-text {
+  font-family: var(--font-display) !important;
+  font-weight: 700 !important;
+  font-size: 0.75rem !important;
+}
+
+.MuiStepConnector-line {
+  border-color: var(--neutral-200) !important;
+  border-top-width: 2px !important;
+}
+
+.MuiStepConnector-root.Mui-active .MuiStepConnector-line {
+  border-color: var(--blue-brand) !important;
+}
+
+.MuiStepConnector-root.Mui-completed .MuiStepConnector-line {
+  border-color: var(--emerald) !important;
+}
+
+/* ── Footer Link Area ───────────────────────────────────────── */
+.form-footer {
+  text-align: center;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1.5px solid var(--neutral-100);
+}
+
+.form-footer p {
+  font-size: 0.875rem;
+  color: var(--neutral-400);
+  margin: 0;
+}
+
+.form-footer .login-link {
+  color: var(--blue-brand);
+  font-weight: 700;
+  font-family: var(--font-display);
+  text-decoration: none;
+  transition: var(--transition);
+  margin-left: 4px;
+}
+
+.form-footer .login-link:hover {
+  color: var(--emerald);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* MUI Login button override */
+.btn-login-link.MuiButton-root {
+  font-family: var(--font-display) !important;
+  font-weight: 700 !important;
+  font-size: 0.875rem !important;
+  color: var(--blue-brand) !important;
+  text-transform: none !important;
+  padding: 4px 8px !important;
+  border-radius: var(--radius-sm) !important;
+  min-width: 0 !important;
+  transition: var(--transition) !important;
+}
+
+.btn-login-link.MuiButton-root:hover {
+  color: var(--emerald) !important;
+  background: var(--emerald-light) !important;
+}
+
+/* ── Framer Motion Wrapper ──────────────────────────────────── */
+.step-motion-wrapper {
+  width: 100%;
+}
+
+/* ── Toast Overrides ────────────────────────────────────────── */
+.Toastify__toast {
+  font-family: var(--font-body) !important;
+  border-radius: var(--radius-md) !important;
+  font-size: 0.9rem !important;
+  font-weight: 500 !important;
+}
+
+.Toastify__toast--success {
+  background: var(--emerald) !important;
+}
+
+.Toastify__toast--error {
+  background: var(--danger) !important;
+}
+
+.Toastify__toast--info {
+  background: var(--blue-brand) !important;
+}
+
+/* ── Animations ─────────────────────────────────────────────── */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.btn-primary.loading {
+  background: linear-gradient(
+    90deg,
+    var(--emerald) 0%,
+    #6ee7b7 40%,
+    var(--emerald) 80%
+  );
+  background-size: 200% auto;
+  animation: shimmer 1.4s linear infinite;
+}
+
+/* ── Loading spinner inside button ──────────────────────────── */
+.btn-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Password strength indicator ────────────────────────────── */
+.password-strength {
+  display: flex;
+  gap: 4px;
+  margin-top: 6px;
+}
+
+.strength-bar {
+  flex: 1;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--neutral-200);
+  transition: background 0.4s ease;
+}
+
+.strength-bar.weak   { background: var(--danger); }
+.strength-bar.fair   { background: #f59e0b; }
+.strength-bar.strong { background: var(--emerald); }
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE — TABLET (≤ 768px)
+═══════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .page-container {
+    padding: 24px 12px;
+  }
+
+  .form-card {
+    padding: 36px 32px;
+    border-radius: var(--radius-lg);
+    max-width: 100%;
+  }
+
+  .form-title {
+    font-size: 1.625rem;
+  }
+
+  .field-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .MuiStepper-root {
+    margin-bottom: 28px !important;
+  }
+
+  .MuiStepLabel-label {
+    font-size: 0.6875rem !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE — MOBILE (≤ 480px)
+═══════════════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .page-container {
+    padding: 0;
+    align-items: flex-start;
+    background: #fff;
+  }
+
+  .form-card {
+    padding: 28px 20px 40px;
+    border-radius: 0;
+    box-shadow: none;
+    min-height: 100vh;
+    max-width: 100%;
+  }
+
+  .form-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .form-card::before {
+    border-radius: 0;
+  }
+
+  .form-header {
+    margin-bottom: 28px;
+  }
+
+  .form-logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    margin-bottom: 16px;
+  }
+
+  .form-title {
+    font-size: 1.5rem;
+    letter-spacing: -0.015em;
+  }
+
+  .form-subtitle {
+    font-size: 0.875rem;
+  }
+
+  /* Stepper — compact on mobile */
+  .MuiStepper-root {
+    margin-bottom: 24px !important;
+  }
+
+  .MuiStepIcon-root {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .MuiStepLabel-label {
+    font-size: 0.625rem !important;
+    margin-top: 4px !important;
+  }
+
+  .MuiStepConnector-line {
+    border-top-width: 1.5px !important;
+  }
+
+  /* Inputs full-width, comfortable tap targets */
+  .MuiInputBase-input {
+    padding: 13px 14px !important;
+    font-size: 1rem !important;       /* prevents iOS zoom on focus */
+  }
+
+  .MuiOutlinedInput-root {
+    border-radius: 10px !important;
+  }
+
+  .MuiInputLabel-root {
+    font-size: 0.9375rem !important;
+  }
+
+  .field-group {
+    gap: 14px;
+  }
+
+  .section-title {
+    font-size: 1rem;
+    margin-bottom: 18px;
+  }
+
+  /* Buttons stacked, full-width, large touch targets */
+  .MuiButton-containedPrimary.btn-submit,
+  .MuiButton-outlinedPrimary.btn-secondary {
+    padding: 15px 20px !important;
+    font-size: 1rem !important;
+    border-radius: 10px !important;
+  }
+
+  .otp-button-row {
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+
+  /* OTP info card */
+  .otp-info-card {
+    padding: 14px 16px;
+    gap: 10px;
+  }
+
+  .otp-info-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .otp-info-text p {
+    font-size: 0.8125rem;
+  }
+
+  /* Footer */
+  .form-footer {
+    margin-top: 24px;
+    padding-top: 20px;
+  }
+
+  .form-footer p {
+    font-size: 0.875rem;
+  }
+
+  /* Select menus */
+  .MuiSelect-select {
+    font-size: 1rem !important;
+    padding: 13px 14px !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ACCESSIBILITY
+═══════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--blue-brand);
+  outline-offset: 3px;
+  border-radius: 4px;
+}

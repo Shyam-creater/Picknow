@@ -1,0 +1,42 @@
+.blog-footer-section {
+  background-color: #2c3e50;
+  color: #fff;
+  padding: 100px 100px 40px;
+}
+.blog-footer-section h1 {
+  margin-top: -15px;
+}
+.blog-footer-section h5 {
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.blog-footer-section h6 {
+  font-size: 14px;
+  color: #a7a0a0;
+  font-weight: 380;
+}
+.blog-footer-section ul {
+  padding-left: 0;
+}
+.blog-footer-section a {
+  font-size: 14px;
+  color: #a7a0a0;
+  font-weight: 380;
+}
+.blog-footer-logo {
+  margin-top: -27px;
+  margin-left: -8px;
+}
+.blog-copyright p{
+  position: absolute;
+  bottom: -40px;
+  background: #2c3e50;
+  padding: 15px;
+  font-size: 13px;
+}
+@media (max-width: 768px) {
+  .blog-footer-section {
+    padding: 50px;
+  }
+}

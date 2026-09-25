@@ -1,0 +1,89 @@
+.vendor-footer {
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  padding: 40px 0 20px;
+  margin-top: 40px;
+  text-align: center; /* Center text for better alignment */
+}
+
+.vendor-footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Use space-between for desktop */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.vendor-footer-section {
+  flex: 1;
+  min-width: 250px;
+  margin-bottom: 30px;
+  padding: 20px; /* Consistent padding */
+  text-align: center; /* Center text within each section */
+}
+
+.vendor-footer-section h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #4a90e2;
+}
+
+.vendor-footer-section p {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.vendor-footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.vendor-footer-section ul li {
+  margin-bottom: 8px;
+}
+
+.vendor-footer-section ul li a {
+  color: #ecf0f1;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.vendor-footer-section ul li a:hover {
+  color: #4a90e2;
+}
+
+.vendor-footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  margin-top: 20px;
+  border-top: 1px solid #34495e;
+}
+
+.vendor-footer-seller-btn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.vendor-footer-seller-btn:hover {
+  background-color: #357abd;
+}
+
+@media (max-width: 768px) {
+  .vendor-footer-container {
+    flex-direction: column; /* Stack sections vertically on mobile */
+    align-items: center; /* Center align sections */
+  }
+  
+  .vendor-footer-section {
+    width: 100%; /* Ensure full width for each section */
+    padding: 15px; /* Adjust padding for better spacing */
+  }
+} 

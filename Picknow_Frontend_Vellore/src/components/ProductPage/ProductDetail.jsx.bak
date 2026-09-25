@@ -1,0 +1,689 @@
+import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { ArrowLeft, ShoppingCart, Heart, Star, Minus, Plus, Share2, Package, RefreshCw, Truck, Facebook, Twitter, Instagram, Youtube, Mail, ChevronLeft, ChevronRight } from 'lucide-react';
+import { FaChevronUp, FaChevronDown } from 'react-icons/fa';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import './ProductDetail.css';
+import dryFruit1 from '../../assets/dryfruits.jpg';
+import Nuts from '../../assets/Nuts.jpg';
+import api from '../../APi/api';
+import { productApi } from '../../api/productApi';
+import { cartApi } from '../../api/cartApi';
+import { useSnackbar } from 'notistack';
+import { transformImageUrl } from '../../api/utils';
+
+const ProductDetail = () => {
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [quantity, setQuantity] = useState(1);
+  const [selectedImage, setSelectedImage] = useState(0);
+  const [isZoomVisible, setIsZoomVisible] = useState(false);
+  const [zoomPosition, setZoomPosition] = useState({ x: 0, y: 0 });
+  const [lensPosition, setLensPosition] = useState({ x: 0, y: 0 });
+  const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
+  const [addingToCart, setAddingToCart] = useState(false);
+  const [reviews, setReviews] = useState([]);
+  const [userRating, setUserRating] = useState(0);
+  const [userReview, setUserReview] = useState('');
+  const [selectedSize, setSelectedSize] = useState('M');
+  const [activeTab, setActiveTab] = useState('description');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const containerRef = useRef(null);
+  const lensRef = useRef(null);
+  const zoomWindowRef = useRef(null);
+  const zoomImageRef = useRef(null);
+
+  const ZOOM_LEVEL = 2.5;
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        setLoading(true);
+        const response = await productApi.getProductById(id);
+        if (response.success) {
+          setProduct(response.product);
+        } else {
+          setError('Product not found');
+          enqueueSnackbar('Product not found', { variant: 'error' });
+        }
+      } catch (err) {
+        console.error('Error fetching product:', err);
+        setError('Failed to load product details');
+        enqueueSnackbar(err.message || 'Failed to load product details', { variant: 'error' });
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProduct();
+  }, [id, enqueueSnackbar]);
+
+  useEffect(() => {
+    if (id) {
+      fetchReviews();
+    }
+  }, [id]);
+
+  const fetchReviews = async () => {
+    try {
+      const response = await productApi.getReviews(id);
+      if (response.success) {
+        setReviews(response.reviews);
+      }
+    } catch (error) {
+      console.error('Error fetching reviews:', error);
+      enqueueSnackbar(error.message || 'Failed to fetch reviews', { variant: 'error' });
+    }
+  };
+
+  const addToCart = async (e) => {
+    e.preventDefault();
+    if (!product) return;
+
+    // Validate stock before making API call
+    if (!product.pStock || product.pStock < quantity) {
+      enqueueSnackbar('Not enough stock available', { 
+        variant: 'error' 
+      });
+      return;
+    }
+
+    try {
+      setAddingToCart(true);
+      const response = await cartApi.addToCart(product._id, quantity);
+      
+      if (response.success) {
+        enqueueSnackbar('Product added to cart successfully', { 
+          variant: 'success' 
+        });
+        
+        // Update cart count in header
+        if (response.cart?.items) {
+          const totalItems = response.cart.items.reduce(
+            (sum, item) => sum + item.quantity, 
+            0
+          );
+          window.dispatchEvent(new CustomEvent('cartUpdated', { 
+            detail: { count: totalItems }
+          }));
+        }
+      }
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+      if (error.message === 'Unauthorized access. Please login.') {
+        enqueueSnackbar('Please login to add items to cart', { 
+          variant: 'warning' 
+        });
+        navigate('/login', {
+          state: { 
+            returnUrl: `/product/${id}`,
+            message: 'Please login to add items to cart'
+          }
+        });
+      } else {
+        enqueueSnackbar(error.message || 'Failed to add product to cart', { 
+          variant: 'error' 
+        });
+      }
+    } finally {
+      setAddingToCart(false);
+    }
+  };
+
+  const handleBuyNow = async () => {
+    try {
+      // First try to add to cart
+      await addToCart({ preventDefault: () => {} });
+      
+      // If successful, navigate to payment
+      navigate('/payment', {
+        state: {
+          cart: [{
+            id: product._id,
+            name: product.pName,
+            price: product.pPrice,
+            quantity,
+            image: product.pImage[0],
+            weight: product.pQuantity + 'g'
+          }],
+          totalAmount: product.pPrice * quantity,
+          isFromCart: false
+        }
+      });
+    } catch (error) {
+      // Error handling is done in addToCart
+      console.error('Error in buy now:', error);
+    }
+  };
+
+  const handleStarClick = (selectedRating) => {
+    setUserRating(selectedRating);
+  };
+
+  const handleSubmitReview = async (e) => {
+    e.preventDefault();
+
+    if (!userRating) {
+      enqueueSnackbar('Please select a rating', { variant: 'warning' });
+      return;
+    }
+
+    if (!userReview.trim()) {
+      enqueueSnackbar('Please write a review', { variant: 'warning' });
+      return;
+    }
+
+    try {
+      setIsSubmitting(true);
+      const response = await productApi.addReview(id, userRating, userReview.trim());
+
+      if (response.success) {
+        enqueueSnackbar('Review submitted successfully', { variant: 'success' });
+        setUserRating(0);
+        setUserReview('');
+        await fetchReviews();
+      }
+    } catch (error) {
+      enqueueSnackbar(error.message || 'Failed to submit review', { variant: 'error' });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const renderStars = (rating, isClickable = false) => {
+    return [...Array(5)].map((_, index) => (
+      <Star
+        key={index}
+        size={24}
+        className={`star-icon ${isClickable ? 'clickable' : ''} ${index < rating ? 'active' : ''}`}
+        fill={index < rating ? "#ffd700" : "none"}
+        stroke={index < rating ? "#ffd700" : "#666"}
+        strokeWidth={1.5}
+        onClick={() => isClickable && handleStarClick(index + 1)}
+        style={{ cursor: isClickable ? 'pointer' : 'default' }}
+      />
+    ));
+  };
+
+  // Update the image URL construction
+  const getImageUrl = (img) => {
+    if (!img) return Nuts; // Return default image if no image provided
+    
+    // If it's a Cloudinary URL, remove any prefixes and return the clean URL
+    if (img.includes('cloudinary.com')) {
+      return img.split('/uploads/').pop();
+    }
+    
+    // If it's already a full URL, return as is
+    if (img.startsWith('http')) {
+      return img;
+    }
+    
+    // For local files, construct the full URL
+    return `${import.meta.env.VITE_SERVER_URL}/uploads/${img}`;
+  };
+
+  const productImages = product?.pImage?.map((img, index) => ({
+    id: index + 1,
+    url: getImageUrl(img),
+    alt: `${product.pName} view ${index + 1}`
+  })) || [
+    {
+      id: 1,
+      url: Nuts,
+      alt: 'Default product image'
+    }
+  ];
+
+  const handleThumbnailClick = (index) => {
+    setSelectedImage(index);
+  };
+
+  const handleImageZoom = (e) => {
+    const image = e.currentTarget;
+    const container = image.parentElement;
+    const { left, top, width, height } = container.getBoundingClientRect();
+    
+    const x = (e.clientX - left) / width * 100;
+    const y = (e.clientY - top) / height * 100;
+    
+    image.style.transformOrigin = `${x}% ${y}%`;
+  };
+
+  const handleQuantityChange = (type) => {
+    if (type === 'decrease' && quantity > 1) {
+      setQuantity(quantity - 1);
+    } else if (type === 'increase' && product?.pStock > quantity) {
+      setQuantity(quantity + 1);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <div className="loading-spinner"></div>
+        <p>Loading product details...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="error-container">
+        <p>{error}</p>
+        <button onClick={() => navigate(-1)}>Go Back</button>
+      </div>
+    );
+  }
+
+  if (!product) {
+    return (
+      <div className="error-container">
+        <p>Product not found</p>
+        <button onClick={() => navigate(-1)}>Go Back</button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="product-detail-container">
+      <div className="product-content">
+        <div className="left-column">
+          <div className="product-gallery">
+            <div className="image-zoom-container">
+              <div className="main-image-container">
+                <img 
+                  src={productImages[selectedImage]?.url || Nuts} 
+                  alt={product?.pName} 
+                  className="main-image"
+                  onMouseMove={handleImageZoom}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scale(2.5)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                  }}
+                />
+                <div className="zoom-hint">Hover to zoom</div>
+              </div>
+            </div>
+            <div className="thumbnails-wrapper">
+              {productImages.map((image, index) => (
+                <div 
+                  key={index}
+                  className={`thumbnail ${selectedImage === index ? 'active' : ''}`}
+                  onClick={() => handleThumbnailClick(index)}
+                >
+                  <img 
+                    src={image.url} 
+                    alt={image.alt}
+                    className="thumbnail-image" 
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="product-info">
+          <div className="product-header">
+            <span className="brand">{product?.pBrand}</span>
+            <h1>{product?.pName}</h1>
+            
+            <div className="rating">
+              <div className="stars">
+                {renderStars(Number(product?.pRating || 0))}
+              </div>
+              <span className="rating-value">{product?.pRating || 0}</span>
+              <span className="reviews">({product?.pRatingsReviews?.length || 0} reviews)</span>
+            </div>
+          </div>
+
+          <div className="price-container">
+            <span className="current-price">₹{product?.pPrice?.toLocaleString()}</span>
+            {product?.pOffer > 0 && (
+              <>
+                <span className="original-price">
+                  ₹{Math.round(product.pPrice * (100 / (100 - product.pOffer))).toLocaleString()}
+                </span>
+                <span className="discount-badge">{product.pOffer}% OFF</span>
+              </>
+            )}
+          </div>
+
+          <div className="stock-status">
+            <span className={`status ${product?.pStock > 0 ? 'in-stock' : 'out-of-stock'}`}>
+              {product?.pStock > 0 ? `In Stock (${product.pStock} units)` : 'Out of Stock'}
+            </span>
+          </div>
+
+          <div className="product-details">
+            <div className="detail-section">
+              <h3>Product Details</h3>
+              <div className="detail-grid">
+                <div className="detail-item">
+                  <span className="label">Brand:</span>
+                  <span className="value">{product?.pBrand}</span>
+                </div>
+                <div className="detail-item">
+                  <span className="label">Category:</span>
+                  <span className="value">{product?.pCategory}</span>
+                </div>
+                {product?.pSubCategory && (
+                  <div className="detail-item">
+                    <span className="label">Sub Category:</span>
+                    <span className="value">{product?.pSubCategory}</span>
+                  </div>
+                )}
+                {product?.pNestedSubCategory && (
+                  <div className="detail-item">
+                    <span className="label">Type:</span>
+                    <span className="value">{product?.pNestedSubCategory}</span>
+                  </div>
+                )}
+                <div className="detail-item">
+                  <span className="label">Quantity per unit:</span>
+                  <span className="value">{product?.pQuantity}g</span>
+                </div>
+                <div className="detail-item">
+                  <span className="label">Tax:</span>
+                  <span className="value">{product?.pTax}%</span>
+                </div>
+                <div className="detail-item">
+                  <span className="label">Status:</span>
+                  <span className="value">{product?.pStatus}</span>
+                </div>
+                <div className="detail-item">
+                  <span className="label">Units Sold:</span>
+                  <span className="value">{product?.pSold || 0}</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="description-section">
+              <h3>Short Description</h3>
+              <p>{product?.pShortDescription}</p>
+              
+              <h3>Description</h3>
+              <p>{product?.pDescription}</p>
+            </div>
+
+            <div className="product-options">
+              <div className="quantity-selector">
+                <label>Quantity</label>
+                <div className="quantity-controls">
+                  <button 
+                    onClick={() => handleQuantityChange('decrease')}
+                    disabled={quantity <= 1}
+                  >
+                    -
+                  </button>
+                  <span>{quantity}</span>
+                  <button 
+                    onClick={() => handleQuantityChange('increase')}
+                    disabled={quantity >= (product?.pStock || 1)}
+                  >
+                    +
+                  </button>
+                </div>
+                {product?.pStock <= 10 && product?.pStock > 0 && (
+                  <div className="stock-warning">
+                    Only {product.pStock} items left in stock
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className="action-buttons">
+              <button 
+                className="add-to-cart"
+                onClick={addToCart}
+                disabled={addingToCart || !product.pStock || product.pStock === 0}
+              >
+                <ShoppingCart size={20} />
+                {addingToCart ? 'Adding...' : 'Add to Cart'}
+              </button>
+              <button 
+                className="buy-now"
+                onClick={handleBuyNow}
+                disabled={addingToCart || !product.pStock || product.pStock === 0}
+              >
+                {addingToCart ? 'Processing...' : 'Buy Now'}
+              </button>
+            </div>
+
+            <div className="additional-info">
+              <div className="info-item">
+                <span className="icon">🚚</span>
+                <div className="info-content">
+                  <h4>Free Delivery</h4>
+                  <p>Enter your postal code for delivery availability</p>
+                </div>
+              </div>
+              <div className="info-item">
+                <span className="icon">↩️</span>
+                <div className="info-content">
+                  <h4>Return Delivery</h4>
+                  <p>Free 30 Days Delivery Returns</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="features">
+            <div className="feature-item">
+              <Truck size={20} />
+              <div>
+                <h4>Free Shipping</h4>
+                <p>On orders over $50</p>
+              </div>
+            </div>
+            <div className="feature-item">
+              <RefreshCw size={20} />
+              <div>
+                <h4>30-Day Returns</h4>
+                <p>Easy returns</p>
+              </div>
+            </div>
+            <div className="feature-item">
+              <Package size={20} />
+              <div>
+                <h4>Secure Packaging</h4>
+                <p>Safe delivery</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="product-tabs">
+        <div className="tab-buttons">
+          <button 
+            className={activeTab === 'description' ? 'active' : ''} 
+            onClick={() => setActiveTab('description')}
+          >
+            Description
+          </button>
+          <button 
+            className={activeTab === 'features' ? 'active' : ''} 
+            onClick={() => setActiveTab('features')}
+          >
+            Features
+          </button>
+          <button 
+            className={activeTab === 'reviews' ? 'active' : ''} 
+            onClick={() => setActiveTab('reviews')}
+          >
+            Reviews
+          </button>
+        </div>
+
+        <div className="tab-content">
+          {activeTab === 'description' && (
+            <div className="description-tab">
+              <p>{product?.pDescription}</p>
+            </div>
+          )}
+          {activeTab === 'features' && (
+            <div className="features-tab">
+              <ul>
+                {product?.pFeatures?.map((feature, index) => (
+                  <li key={index}>{feature}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {activeTab === 'reviews' && (
+            <div className="reviews-tab">
+              <h3>Customer Reviews</h3>
+              
+              <form className="review-form" onSubmit={handleSubmitReview}>
+                <div className="rating-input">
+                  {renderStars(userRating, true)}
+                </div>
+                
+                <textarea
+                  value={userReview}
+                  onChange={(e) => setUserReview(e.target.value)}
+                  placeholder="Write your review here..."
+                  required
+                  disabled={isSubmitting}
+                />
+                
+                <button 
+                  type="submit" 
+                  className={`submit-review-btn ${isSubmitting ? 'loading' : ''}`}
+                  disabled={isSubmitting || !userRating || !userReview.trim()}
+                >
+                  {isSubmitting ? 'Submitting...' : 'Submit Review'}
+                </button>
+              </form>
+
+              <div className="reviews-list">
+                {reviews.length > 0 ? (
+                  reviews.map((review) => (
+                    <div key={review._id} className="review-item">
+                      <div className="review-header">
+                        <span className="reviewer-name">{review.user?.name || 'Anonymous'}</span>
+                        <span className="review-date">
+                          {new Date(review.createdAt).toLocaleDateString()}
+                        </span>
+                      </div>
+                      <div className="review-rating">
+                        {renderStars(Number(review.rating))}
+                      </div>
+                      <p className="review-content">{review.review}</p>
+                    </div>
+                  ))
+                ) : (
+                  <p className="no-reviews">No reviews yet. Be the first to review this product!</p>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="related-products">
+        <h2>Related Products</h2>
+        <div className="swiper-container">
+          <div className="swiper-nav-prev">
+            <ChevronLeft size={24} />
+          </div>
+          <div className="swiper-nav-next">
+            <ChevronRight size={24} />
+          </div>
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            spaceBetween={20}
+            slidesPerView={1}
+            navigation={{
+              prevEl: '.swiper-nav-prev',
+              nextEl: '.swiper-nav-next',
+            }}
+            pagination={{ clickable: true }}
+            autoplay={{ delay: 5000 }}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+              },
+              768: {
+                slidesPerView: 3,
+              },
+              1024: {
+                slidesPerView: 4,
+              },
+            }}
+            className="related-products-slider"
+          >
+            {productImages.map((image, index) => (
+              <SwiperSlide key={index}>
+                <div className="related-product-card">
+                  <div className="related-product-image">
+                    <img src={image.url} alt={image.alt} />
+                    <button className="quick-view-btn">Quick View</button>
+                  </div>
+                  <div className="related-product-info">
+                    <h3>{product?.pName}</h3>
+                    <div className="related-product-rating">
+                      {renderStars(Number(product?.pRating || 0))}
+                    </div>
+                    <span className="related-product-price">₹{product?.pPrice?.toLocaleString()}</span>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </div>
+
+      <footer className="footer">
+        <div className="footer-content">
+          <div className="footer-section">
+            <h3>About Us</h3>
+            <p>We're dedicated to providing high-quality fashion accessories that combine style, functionality, and sustainability.</p>
+          </div>
+          <div className="footer-section">
+            <h3>Customer Service</h3>
+            <ul>
+              <li>Contact Us</li>
+              <li>Shipping Information</li>
+              <li>Returns & Exchanges</li>
+              <li>FAQ</li>
+            </ul>
+          </div>
+          <div className="footer-section">
+            <h3>Connect With Us</h3>
+            <div className="social-icons">
+              <Facebook size={20} />
+              <Twitter size={20} />
+              <Instagram size={20} />
+              <Youtube size={20} />
+              <Mail size={20} />
+            </div>
+          </div>
+          <div className="footer-section">
+            <h3>Newsletter</h3>
+            <div className="newsletter-form">
+              <input type="email" placeholder="Enter your email" />
+              <button>Subscribe</button>
+            </div>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <p>&copy; 2024 LuxuryStyle. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default ProductDetail;

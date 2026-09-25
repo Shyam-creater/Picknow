@@ -1,0 +1,206 @@
+/* VendorFooter.css */
+
+.vendor-footer {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: #ffffff;
+  padding: 60px 0 0;
+  margin-top: 80px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.vendor-footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.vendor-footer-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Logo Section */
+.vendor-footer-logo {
+  margin-bottom: 12px;
+}
+
+.vendor-footer-logo a {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.vendor-footer-logo a:hover {
+  transform: translateY(-3px);
+}
+
+.vendor-footer-logo img {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(1.1);
+}
+
+/* Typography */
+.vendor-footer-section p {
+  color: #b8c1ec;
+  line-height: 1.7;
+  font-size: 14px;
+  margin: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.vendor-footer-section h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 20px 0;
+  color: #ffffff;
+  position: relative;
+  padding-bottom: 12px;
+}
+
+.vendor-footer-section h3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 100%);
+  border-radius: 2px;
+}
+
+/* Be a Seller Button */
+.vendor-footer-seller-btn {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: #ffffff;
+  border: none;
+  padding: 14px 32px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+  margin-top: 8px;
+  width: fit-content;
+  letter-spacing: 0.3px;
+}
+
+.vendor-footer-seller-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(79, 70, 229, 0.5);
+  background: linear-gradient(135deg, #5b52ee 0%, #8b45f5 100%);
+}
+
+/* Quick Links */
+.vendor-footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.vendor-footer-section ul li a {
+  color: #b8c1ec;
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  display: inline-block;
+  position: relative;
+}
+
+.vendor-footer-section ul li a:hover {
+  color: #ffffff;
+  transform: translateX(5px);
+}
+
+/* Footer Bottom */
+.vendor-footer-bottom {
+  border-top: 1px solid rgba(184, 193, 236, 0.1);
+  padding: 24px 20px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.vendor-footer-bottom p {
+  margin: 0;
+  color: #b8c1ec;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+}
+
+/* Responsive Design */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .vendor-footer-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .vendor-footer-section:first-child {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 640px) {
+  .vendor-footer {
+    padding: 40px 0 0;
+    margin-top: 40px;
+  }
+
+  .vendor-footer-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 0 24px;
+  }
+
+  .vendor-footer-section {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .vendor-footer-section h3 {
+    font-size: 17px;
+    margin-bottom: 15px;
+  }
+
+  .vendor-footer-section p {
+    font-size: 14px;
+    line-height: 1.6;
+    gap: 10px;
+  }
+
+  .vendor-footer-seller-btn {
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+  }
+
+  .vendor-footer-bottom {
+    text-align: center;
+    padding: 20px 24px;
+  }
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.vendor-footer-section {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.vendor-footer-section:nth-child(1) { animation-delay: 0.1s; }
+.vendor-footer-section:nth-child(2) { animation-delay: 0.2s; }
+.vendor-footer-section:nth-child(3) { animation-delay: 0.3s; }

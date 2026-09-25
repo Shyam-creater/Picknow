@@ -1,0 +1,152 @@
+/* ============================================
+   SLEEK PROFESSIONAL MINIMALIST LOADER
+   ============================================ */
+
+.modern-discovery-loader {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #ffffff;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.modern-discovery-loader.inline {
+  position: relative;
+  height: 400px;
+  width: 100%;
+  background: transparent;
+  inset: auto;
+}
+
+.loader-portal-sleek {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 300px;
+  animation: sleekFadeIn 0.5s ease-out;
+}
+
+@keyframes sleekFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Logo & Spinner Container */
+.loader-logo-container-sleek {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.loader-logo-sleek {
+  width: 65px;
+  height: auto;
+  object-fit: contain;
+  z-index: 3;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.08));
+}
+
+.loader-spinner-minimal {
+  position: absolute;
+  width: 105%;
+  height: 105%;
+  border: 2.5px solid #f1f5f9;
+  border-top-color: #fb641b;
+  border-radius: 50%;
+  animation: spinSleek 0.8s linear infinite;
+}
+
+@keyframes spinSleek {
+  to { transform: rotate(360deg); }
+}
+
+/* Info Section */
+.loader-info-sleek {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.loader-title-sleek {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.loader-msg-sleek {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #64748b;
+  margin: 0;
+}
+
+/* Minimal Progress Bar */
+.loader-progress-sleek {
+  width: 180px;
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.loader-bar-bg-sleek {
+  width: 100%;
+  height: 3px;
+  background: #f1f5f9;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.loader-bar-fill-sleek {
+  height: 100%;
+  background: #fb641b;
+  border-radius: 10px;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.loader-percent-sleek {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #fb641b;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .loader-portal-sleek {
+    max-width: 240px;
+  }
+  
+  .loader-logo-container-sleek {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .loader-logo-sleek {
+    width: 44px;
+  }
+  
+  .loader-title-sleek {
+    font-size: 1rem;
+  }
+}

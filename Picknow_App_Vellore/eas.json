@@ -1,0 +1,34 @@
+{
+  "cli": {
+    "version": ">= 16.27.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://backmern.picknow.in/api"
+      }
+    },
+    "preview": {
+      "distribution": "internal",
+      "credentialsSource": "local",
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://backmern.picknow.in/api"
+      }
+    },
+    "production": {
+      "autoIncrement": true,
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://backmern.picknow.in/api"
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}

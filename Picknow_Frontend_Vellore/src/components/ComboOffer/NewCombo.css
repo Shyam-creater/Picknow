@@ -1,0 +1,131 @@
+/* =========================================================
+   NewCombo.css - Rich Meta Gradient Orange Theme
+   ========================================================= */
+
+.new-combo-section {
+  padding: 5rem 0;
+  background: linear-gradient(180deg, var(--light-bg), rgba(255, 140, 0, 0.05));
+}
+
+.nc-header {
+  max-width: 1200px;
+  margin: 0 auto 3rem auto;
+  text-align: center;
+}
+
+.nc-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--dark-text);
+  letter-spacing: -1px;
+  margin-bottom: 0.5rem;
+}
+
+.nc-title span {
+  background: var(--meta-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nc-subtitle {
+  font-size: 1.125rem;
+  color: var(--gray-text);
+  max-width: 600px;
+  margin: 0 auto 2rem auto;
+}
+
+.nc-error {
+  color: #dc2626;
+  text-align: center;
+  font-weight: 600;
+  padding: 2rem;
+  background: #fef2f2;
+  border-radius: 12px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.nc-empty {
+  text-align: center;
+  color: var(--gray-text);
+  font-size: 1.1rem;
+  padding: 3rem;
+  font-style: italic;
+}
+
+.nc-image-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(255, 94, 0, 0.1), rgba(255, 140, 0, 0.2));
+  color: var(--primary-orange);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+/* Shimmer Loading */
+.nc-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.shimmer {
+  background: white;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+.shimmer-block {
+  height: 250px;
+  background: #f3f4f6;
+}
+
+.shimmer-line {
+  height: 12px;
+  background: #e5e7eb;
+  border-radius: 6px;
+  margin: 12px 1rem;
+}
+
+.w-70 { width: 70%; }
+.w-50 { width: 50%; }
+.w-40 { width: 40%; }
+
+.shimmer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  /* transform: translateX(-100%); */
+  /* animation: shimmer 1.5s infinite linear; */
+}
+
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}
+
+@media (max-width: 1200px) {
+  .nc-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .new-combo-section { padding: 3rem 1rem; }
+  .nc-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+}
+
+@media (max-width: 480px) {
+  .nc-grid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,73 @@
+:root {
+  --brand-blue: #0072ce;
+  --brand-orange: #ff8a00;
+  --brand-blue-hover: #005fa3;
+  --brand-orange-hover: #e67e00;
+  --brand-blue-light: #f0f7ff;
+  --brand-orange-light: #fff5e6;
+  --brand-blue-glass: rgba(0, 114, 206, 0.08);
+  --brand-orange-glass: rgba(255, 138, 0, 0.1);
+
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-secondary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --nav-height: 72px;
+  --nav-height-scrolled: 64px;
+  --radius-premium: 12px;
+  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+}
+
+body {
+  font-family: var(--font-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background-color: #ffffff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-primary);
+}
+
+button, input, textarea, select {
+  font-family: var(--font-primary);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+/* Global Input Focus Reset */
+input:focus, 
+select:focus, 
+textarea:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: #d1d5db !important;
+}
